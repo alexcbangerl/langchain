@@ -280,7 +280,7 @@ class DatabricksVectorSearch(VectorStore):
         self,
         query: str,
         k: int = 4,
-        filters: Optional[Any] = None,
+        filter: Optional[Any] = None,
         *,
         query_type: Optional[str] = None,
         **kwargs: Any,
@@ -290,14 +290,14 @@ class DatabricksVectorSearch(VectorStore):
         Args:
             query: Text to look up documents similar to.
             k: Number of Documents to return. Defaults to 4.
-            filters: Filters to apply to the query. Defaults to None.
+            filter: Filters to apply to the query. Defaults to None.
             query_type: The type of this query. Supported values are "ANN" and "HYBRID".
 
         Returns:
             List of Documents most similar to the embedding.
         """
         docs_with_score = self.similarity_search_with_score(
-            query=query, k=k, filters=filters, query_type=query_type, **kwargs
+            query=query, k=k, filter=filter, query_type=query_type, **kwargs
         )
         return [doc for doc, _ in docs_with_score]
 
@@ -305,7 +305,7 @@ class DatabricksVectorSearch(VectorStore):
         self,
         query: str,
         k: int = 4,
-        filters: Optional[Any] = None,
+        filter: Optional[Any] = None,
         *,
         query_type: Optional[str] = None,
         **kwargs: Any,
@@ -315,7 +315,7 @@ class DatabricksVectorSearch(VectorStore):
         Args:
             query: Text to look up documents similar to.
             k: Number of Documents to return. Defaults to 4.
-            filters: Filters to apply to the query. Defaults to None.
+            filter: Filters to apply to the query. Defaults to None.
             query_type: The type of this query. Supported values are "ANN" and "HYBRID".
 
         Returns:
@@ -333,7 +333,7 @@ class DatabricksVectorSearch(VectorStore):
             columns=self.columns,
             query_text=query_text,
             query_vector=query_vector,
-            filters=filters,
+            filters=filter,
             num_results=k,
             query_type=query_type,
         )
